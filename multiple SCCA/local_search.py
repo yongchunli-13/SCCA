@@ -124,83 +124,7 @@ def gen_data(n1, n2, s1, s2,k):
     return A, B, C, LB
 
 
-# def gen_data(n1, m2, s1, s2, k, dataname):
-#     global A
-#     global B
-#     global C
-    
-#     random.seed(1)
-    
-#     X = pd.read_csv(os.getcwd()+'/datasets/dna.csv',
-#                           encoding = 'utf-8',sep=',')
-    
-#     X = np.array(X)
-    
-#     sn1 = sample(range(len(X[0,:])), n1)
-#     X = X[:, sn1]
-#     X = np.matrix(X)
-    
-    
-#     Y = pd.read_csv(os.getcwd()+'/datasets/rna.csv',
-#                           encoding = 'utf-8',sep=',')
-    
-#     Y = np.array(Y)
-#     sm2 = sample(range(len(Y[0,:])), m2)
-#     Y = Y[:, sm2]
-#     Y = np.matrix(Y)
-    
-#     N = 89
-    
-#     B = sum([X[i,:].T*X[i,:] for i in range(N)])/N 
-    
- 
-#     C = sum([Y[i,:].T*Y[i,:] for i in range(N)])/N
 
-#     A = sum([X[i,:].T*Y[i,:] for i in range(N)])/N
-#     # return (A, B, C)
-
-#     # global A
-#     # global B
-#     # global C
-
-#     # data = pd.read_table(os.getcwd()+'/datasets/'+dataname+'_txt',
-#     #   encoding = 'utf-8',sep=',')
-#     # temp = data.drop(['Unnamed: 0'], axis=1)
-#     # cov = np.matrix(np.array(temp))
-#     # B = np.matrix(cov[0:n1, 0:n1])
-#     # C = np.matrix(cov[n1:(n1+n2), n1:(n1+n2)])
-#     # A = np.matrix(cov[0:n1, n1:(n1+n2)])
-
-#     [a,b] = np.linalg.eigh(B) 
-#     a = a.real # engivalues
-#     b = b.real # engivectors
-#     engi_val = [0]*len(a)
-#     for l in range(len(a)):
-#         if(a[l] > 1e-8):
-#             engi_val[l] = 1/math.sqrt(a[l])
-#         else:
-#             engi_val[l] = 0
-
-#     temp = b*np.diag(engi_val)*b.T 
-    
-#     [a,b] = np.linalg.eigh(C) 
-#     a = a.real # engivalues
-#     b = b.real # engivectors
-#     engi_val = [0]*len(a)
-#     for l in range(len(a)):
-#         if(a[l] > 1e-8):
-#             engi_val[l] = 1/math.sqrt(a[l])
-#         else:
-#             engi_val[l] = 0
-
-#     temp1 = b*np.diag(engi_val)*b.T 
-    
-#     K =  temp*A*temp1
-#     u, a, v = np.linalg.svd(K)
-#     sorted_sigma = sorted(a, reverse=True)
-#     LB = sum(sorted_sigma[:k])
-#     print(LB)
-#     return A, B, C, LB
 
 def localsearch(n1, n2, s1, s2, A, B, C, k): 
     start = time.time()
@@ -337,25 +261,7 @@ list_n = [34, 57, 64, 77, 128, 385]
 list_name = [ 'dermatology',
               'spambase', 'digits',  'buzz', 'gas', 'slice']
 
-# list_n = [57]
-# list_name = [ 'spambase']
 
-# n=160
-k = 1
-# for i in range(len(list_n)):
-#     for s1 in range(5, 11, 5):
-#         n = list_n[i]
-#         data_name = list_name[i]
-#         n1 = int(n/2)
-#         n2 = n-n1
-#         s2 = s1
-#         k=1
-        # if s == 5:
-        #     k=2
-        # else:
-        #     k=3
-# k =2
-# k = 1
 for n1 in range(50, 250, 50):
     n2=n1
     for s1 in range(5, 11, 5): # set the values of s
